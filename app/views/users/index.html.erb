@@ -1,3 +1,4 @@
+<% provide :title, "ユーザーを探す" %>
 <section class="sub_header">
   <div class="sub_header_content">
   </div>
@@ -7,7 +8,7 @@
   <div style="max-width:500px;margin:0 auto">
     <%= form_tag users_path, method: :get, enforce_utf8: false do %>
       <div class="form-group">
-        <%= search_field_tag :q, params[:q], :class => "form-control", :placeholder => "スキル、学校名、名前" %>
+        <%= search_field_tag :q, params[:q], :class => "form-control", :placeholder => "欲しいスキル、役割、学校名、名前" %>
       </div>
       <button type="submit" class="btn btn-primary" style="width:200px">検索</button>
     <% end %>
