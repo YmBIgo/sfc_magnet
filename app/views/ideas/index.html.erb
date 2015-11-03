@@ -5,11 +5,14 @@
 </section>
 <div class="container">
   <div class="text-center">
+    <hr>
     <h2>アイデアを探す</h2>
+    <br>
+    <p>面白いアイデアを見つけよう！</p>
     <div style="max-width:500px;margin:0 auto">
       <%= form_tag ideas_path, method: :get, enforce_utf8: false do %>
         <div class="form-group">
-          <%= search_field_tag :q, params[:q], :class => "form-control", :placeholder => "スキル、学校名、名前" %>
+          <%= search_field_tag :q, params[:q], :class => "form-control", :placeholder => "気になるキーワードを入力してね" %>
         </div>
         <button type="submit" class="btn btn-primary" style="width:200px">検索</button>
       <% end %>
