@@ -1,0 +1,59 @@
+<header>
+    <div class="header-content">
+        <div class="header-content-inner">
+          <% if user_signed_in? %>
+            <% if current_user.full_profile? %>
+              <h1>SFC Magnet</h1>
+            <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-6 text-center">
+                  <div class="service-box">
+                      <a href="/users">
+                          <i class="fa fa-4x fa-users wow bounceIn text-primary"></i>
+                          <h3>ユーザーを検索する</h3>
+                      </a>
+                  </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 text-center">
+                  <div class="service-box">
+                      <a href="/ideas">
+                          <i class="fa fa-4x fa-magnet wow bounceIn text-primary"></i>
+                          <h3>アイデアを検索する</h3>
+                      </a>
+                  </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 text-center">
+                  <div class="service-box">
+                      <a href="/ideas/new">
+                          <i class="fa fa-4x fa-lightbulb-o wow bounceIn text-primary"></i>
+                          <h3>アイデアを登録する(3つまで)</h3>
+                      </a>
+                  </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 text-center">
+                  <div class="service-box">
+                      <a href="/users/<%= current_user.id %>">
+                          <i class="fa fa-4x fa-user wow bounceIn text-primary"></i>
+                          <h3><%= current_user.name %>さんの情報を見る</h3>
+                      </a>
+                  </div>
+              </div>
+            </div>
+            <% else %>
+              <div class="form-notice">
+                <h2>登録を完了して下さい</h2>
+                <%= link_to "登録画面へ", edit_user_path(current_user.id), :class => "btn btn-primary" %>
+              </div>
+            <% end %>
+          <% else %>
+            <h1>Welcome to SFC Magnet</h1>
+            <hr>
+            <p>
+              <%= link_to "新規登録する", new_user_registration_path, :class => "btn btn-primary btn-xl" %>　
+              <%= link_to "ログインする", new_user_session_path, :class => "btn btn-primary btn-xl" %>
+            </p>
+            <a href="#about" class="btn btn-primary btn-xl page-scroll">詳しくはこちら</a>
+          <% end %>
+        </div>
+    </div>
+</header>
+

@@ -1,0 +1,61 @@
+<header>
+  <div class="header-content">
+    <div class="header-content-inner">
+      <div class="form-wrapper">
+        <h2>ユーザー情報</h2>
+        <%= form_for @user do |f| %>
+          <% if @user.avatar.present? %>
+            <%= image_tag @user.authenticated_image_url(:medium), :class => "img-responsive", :alt => "", :style => "margin:5px auto" %>
+          <% end %>
+          <div class="form-item">
+            <%= f.file_field :avatar, :class => "form-control" %>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 col-xs-6">
+              <%= f.label "苗字" %>
+            </div>
+            <div class="col-sm-6 col-xs-6">
+              <%= f.label "名前" %>
+            </div>
+          </div>
+          <div class="form-small-item">
+            <div class="row">
+              <div class="col-sm-6 col-xs-6">
+                <%= f.text_field :family_name, :class => "form-control" %>
+              </div>
+              <div class="col-sm-6 col-xs-6">
+                <%= f.text_field :first_name, :class => "form-control" %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 col-xs-6">
+              <%= f.label "学校名" %>
+            </div>
+            <div class="col-sm-6 col-xs-6">
+              <%= f.label "スキル" %>
+            </div>
+          </div>
+          <div class="form-small-item">
+            <div class="row">
+              <div class="col-sm-6 col-xs-6">
+                <%= f.collection_select :school_id, School.all , :id, :name, {:class => "form-control"} %>
+              </div>
+              <div class="col-sm-6 col-xs-6">
+                <%= f.collection_select :job_id, Job.all, :id, :name , {:class => "form-control"} %>
+              </div>
+            </div>
+          </div>
+          <div class="form-item">
+            <%= f.label "自己紹介" %>
+            <%= f.text_area :self_intro, :class => "form-control" %>
+          </div>
+          <div class="actions">
+            <%= link_to "トップに戻る", root_path, :class => 'btn btn-primary' %>
+            <%= f.submit "編集する", :class => 'btn btn-primary' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</header>

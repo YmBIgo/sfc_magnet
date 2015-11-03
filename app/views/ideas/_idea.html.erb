@@ -1,0 +1,22 @@
+<div class="idea">
+<div class="col-lg-4 col-sm-4 text-center" style="height:300px">
+  <h4><%= link_to i.name, idea_path(i.id), :class => "btn btn-primary", :style => "position:relative;top:20px;width:200px" %></h4>
+  <div class="portfolio-box">
+    <a href="/ideas/<%= i.id %>">
+      <% if i.invention.present? %>
+        <%= image_tag i.authenticated_image_url(:large), :class => "img-responsive", :alt => "", :style => "margin:0 auto" %>
+      <% end %>
+      <div class="portfolio-box-caption">
+        <div class="portfolio-box-caption-content">
+          <div class="project-name">
+            <%= i.name %>
+          </div>
+          <div class="project-category text-faded">
+            <p><%= "#{i.user.name}さん(#{i.user.school.name})" %></p>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+  </div>
+</div>

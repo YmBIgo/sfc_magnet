@@ -1,0 +1,23 @@
+<section class="sub_header">
+  <div class="sub_header_content">
+  </div>
+</section>
+<h2 class="text-center">ユーザーを探す</h2>
+<hr>
+<div class="container">
+  <section class="no-padding">
+    <div class="container-fuild">
+      <div class="row no-gutter">
+        <div id="users">
+          <div class="page">
+            <% @users.each do |u| %>
+              <%= render 'users/user', u: u %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <%= paginate @users %>
+      <hr>
+    </div>
+  </section>
+</div>

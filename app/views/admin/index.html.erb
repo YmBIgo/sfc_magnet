@@ -1,0 +1,33 @@
+<aside class="bg-dark">
+  <div class="text-center">
+    <h1>ADMIN</h1>
+    <p>ユーザーの管理には最大の注意を</p>
+  </div>
+</aside>
+<div class="text-center">
+  <table class="table" style="width:1500px">
+    <thead>
+      <td>画像</td>
+      <td>ID</td>
+      <td>名前</td>
+      <td>Email</td>
+      <td>アイデアの数</td>
+      <td>School</td>
+      <td>Job</td>
+      <td>サクジョ</td>
+    </thead>
+    <% @users.each do |u| %>
+      <tr>
+        <td><%= image_tag u.authenticated_image_url(:thumb), :class => "img-responsive", :alt => "", :style => "margin:0 auto" %></td>
+        <td><%= link_to "#{u.id}",user_path(u.id) %></td>
+        <td><%= link_to "#{u.family_name}#{u.first_name}",user_path(u.id) %></td>
+        <td><%= u.email %></td>
+        <td><%= u.ideas.count %></td>
+        <td><%= u.school.name %></td>
+        <td><%= u.job.name %></td>
+        <td><%= link_to "delete", user_path(u.id), method: :delete, :class => "btn btn-primary" %></td>
+      </tr>
+    <% end %>
+    <%= paginate @users %>
+  </table>
+</div>

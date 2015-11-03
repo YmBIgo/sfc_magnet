@@ -1,0 +1,18 @@
+<header>
+  <div class="header-content">
+    <div class="header-content-inner">
+      <div class="form-wrapper">
+        <div class="text-center">
+          <h2><strong>情報を編集しました</strong></h2>
+          <p><%= "#{@idea.name}" %></p>
+          <p><%= "#{@idea.type.name}" %></p>
+          <% if @idea.invention.present? %>
+            <%= image_tag @idea.authenticated_image_url(:large), :class => "img-responsive", :alt => "", :style => "margin:5px auto" %>
+          <% end %>
+        </div>
+        <%= link_to "このアイデアを見る", idea_path(@idea.id), :class => "btn btn-primary" %>
+        <%= link_to "トップに戻る", root_path, :class => "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+</header>

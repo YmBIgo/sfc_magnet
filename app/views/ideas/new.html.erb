@@ -1,0 +1,42 @@
+<header>
+  <div class="header-content">
+    <div class="header-content-inner">
+      <div class="form-wrapper">
+        <% if current_user.ideas.count<3 %>
+          <h2>アイデアを登録する</h2>
+          <%= form_for(@idea) do |f| %>
+            <div class="form-item">
+              <%= f.label "タイトル" %>
+              <%= f.text_field :name, :class => "form-control" %>
+            </div>
+            <div class="form-item">
+              <%= f.label "画像を選択" %>
+              <%= f.file_field :invention, :class => "form-control" %>
+            </div>
+            <div class="form-item">
+                <%= f.label "ジャンル" %><br>
+                <%= f.collection_select :type_id, Type.all, :id, :name, {:class => "form-control"} %>
+            </div>
+
+            <div class="form-item">
+              <%= f.label "内容" %>
+              <%= f.text_area :outline, :class => "form-control" %>
+            </div>
+            <div class="actions">
+              <%= link_to "トップに戻る", root_path, :class => "btn btn-primary btn-md" %>
+              <%= f.submit "登録する", :class => "btn btn-primary btn-md" %>
+            </div>
+          <% end %>
+        <% else %>
+          <h3 style="padding-top:50px">アイデア登録は３件までです
+              <br>
+              新しく登録する場合は、<br>登録したアイデアを編集してください
+          </h3>
+          <%= link_to "自分のアイデアを見る", user_path(current_user.id), :class => "btn btn-primary" %>
+          <br>
+          <%= link_to "トップに戻る", root_path, :class => "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</header>

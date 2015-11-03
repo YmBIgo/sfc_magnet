@@ -1,0 +1,23 @@
+<section class="sub_header">
+  <div class="sub_header_content">
+  </div>
+</section>
+<div class="container">
+  <h2 class="text-center">アイデアを探す</h2>
+  <hr>
+  <section class="no-padding">
+    <div class="container-fuild">
+      <div class="row no-gutter">
+        <div id="ideas">
+          <div class="page">
+            <% @ideas.each do |i| %>
+              <%= render 'ideas/idea', i: i %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <%= paginate @ideas %>
+      <hr>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <title><%= yield :title %></title>
+  <meta name="viewport" content="width=device-width,initial-scale=0.8,user-scalable=yes" />
+  <%= stylesheet_link_tag 'creative/manifest.css', media: 'all' %>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <script type='text/javascript' charset='utf-8'>
+      $(function(){
+        $.material.init();
+      });
+  </script>
+
+  <%= render 'creatives/navbar' %>
+
+  <%= yield %>
+
+  <aside class="bg-dark" style="margin-top:20px">
+    <hr class="light">
+  </aside>
+
+  <%= render 'creatives/contact' %>
+
+</body>
+</html>

@@ -1,0 +1,5 @@
+<%= render 'header' %>
+<% unless user_signed_in? %>
+   <%= render 'creatives/bg_primary' %>
+    <%= render 'creatives/services' %>
+<% end %>

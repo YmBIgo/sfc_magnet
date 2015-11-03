@@ -1,0 +1,33 @@
+<header>
+  <div class="header-content">
+    <div class="header-content-inner">
+      <div class="form-wrapper">
+        <h2>アイデアの編集をする</h2>
+        <%= form_for @idea do |f| %>
+          <div class="form-item">
+            <%= f.label "画像" %>
+            <%= f.file_field :invention, :class => "form-control" %>
+          </div>
+          <div class="form-item">
+              <%= f.label "タイトル" %>
+              <%= f.text_field :name, :class => "form-control" %>
+          </div>
+          <div class="form-item">
+              <%= f.label "ジャンル" %><br>
+              <%= f.collection_select :type_id, Type.all, :id, :name, {:class => "form-control"} %>
+          </div>
+
+          <div class="form-item">
+            <%= f.label "内容" %>
+            <%= f.text_area :outline, :class => "form-control" %>
+          </div>
+          <div class="actions">
+            <%= link_to "トップに戻る", root_path, :class => "btn btn-primary btn-md" %>
+            <%= f.submit "登録する", :class => "btn btn-primary btn-md" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</header>
+

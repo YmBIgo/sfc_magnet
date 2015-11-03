@@ -1,0 +1,22 @@
+<section class="sub_header">
+  <div class="sub_header_content">
+  </div>
+</section>
+<div class="container">
+  <div class="text-center">
+    <h2><%= @idea.name %></h2>
+    <%= link_to "#{@idea.user.name}(#{@idea.user.job.name})", user_path(@idea.user.id), :class => "btn btn-primary", :style => "width:200px" %>
+    <%= image_tag @idea.authenticated_image_url(:large), :class => "img-responsive", :alt => "", :style => "margin:5px auto" %>
+  </div>
+  <hr>
+  <p><%= @idea.outline %></p>
+  <% if @idea.user.id == current_user.id %>
+    <div class="text-center">
+      <%= link_to "このアイデアを編集する", edit_idea_path(@idea.id), :class => "btn btn-primary", :style => "margin:5px auto" %>
+    </div>
+  <% end %>
+  <hr>
+  <div class="text-center">
+    <p>メールアドレス：<%= @idea.user.email %></p>
+  </div>
+</div>
