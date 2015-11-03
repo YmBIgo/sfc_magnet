@@ -2,7 +2,18 @@
   <div class="sub_header_content">
   </div>
 </section>
-<h2 class="text-center">ユーザーを探す</h2>
+<div class="text-center">
+  <h2>ユーザーを探す</h2>
+  <div style="max-width:500px;margin:0 auto">
+    <%= form_tag users_path, method: :get, enforce_utf8: false do %>
+      <div class="form-group">
+        <%= search_field_tag :q, params[:q], :class => "form-control", :placeholder => "スキル、学校名、名前" %>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:200px">検索</button>
+    <% end %>
+  </div>
+</div>
+<br>
 <hr>
 <div class="container">
   <section class="no-padding">
@@ -11,7 +22,26 @@
         <div id="users">
           <div class="page">
             <% @users.each do |u| %>
-              <%= render 'users/user', u: u %>
+              <div class="user">
+                <div class="col-lg-4 col-sm-4 text-center" style="height:300px">
+                  <h4><%= link_to "#{u.family_name} #{u.first_name}(#{u.job.name})", user_path(u.id), :class => "btn btn-primary", :style => "position:relative;top:20px;width:200px" %></h4>
+                  <div class="portfolio-box">
+                    <a href="/users/<%= u.id %>">
+                      <%= image_tag User.find(u.id).authenticated_image_url(:large), :class => "img-responsive", :alt => "", :style => "margin:0 auto" %>
+                      <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                          <div class="project-name">
+                            <%= u.job.name %>
+                          </div>
+                          <div class="project-category text-faded">
+                            <p><%= "#{u.family_name}#{u.first_name}(#{u.school.name})" %>さん</p>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
             <% end %>
           </div>
         </div>

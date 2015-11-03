@@ -13,13 +13,14 @@
     <%= image_tag @user.authenticated_image_url(:large), :class => "img-responsive", :alt => "", :style => "margin:0 auto" %>
   <% end %>
   <hr>
-  <p><%= @user.self_intro %></p>
+  <p><%= simple_format(@user.self_intro) %></p>
   <div class="text-center">
     <p>メールアドレス(<%= "#{@user.email}" %>)</p>
     <% if @user.id == current_user.id %>
       <%= link_to "ユーザー情報を編集する", edit_user_path(current_user.id), :class => "btn btn-primary" %>
     <% end %>
-    <h2 style="border-top:1px solid; padding:10px">アイデア一覧</h2>
+    <hr>
+    <h2>アイデア一覧</h2>
     <hr>
     <section class="no-padding">
       <div class="container-fuild">

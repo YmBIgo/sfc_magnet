@@ -9,6 +9,40 @@ class User < ActiveRecord::Base
   belongs_to :job
   has_many   :ideas
 
+  # Elasticserach
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
+  index_name "user_#{Rails.env}" # インデックス名を指定(RDBでいうデータベース)
+
+  settings do
+    mappings do
+
+      indexes :family_name,    analyzer: 'keyword', index: 'not_analyzed'
+      indexes :first_name,     analyzer: 'keyword', index: 'not_analyzed'
+
+      indexes :created_at,     type: 'date', format: 'date_time'
+
+      indexes :avatar,         type: 'string'
+
+      indexes :job do
+        indexes :name, analyzer: 'keyword', index: 'not_analyzed'
+      end
+
+      indexes :school do
+        indexes :name, analyzer: 'keyword', index: 'not_analyzed'
+      end
+    end
+  end
+
+  def as_indexed_json(options = {})
+    attributes
+      .symbolize_keys
+      .slice(:family_name, :first_name, :created_at )
+      .merge(job: { name: job.name })
+      .merge(school: { name: school.name })
+  end
+
   has_attached_file :avatar,
                     :styles => {
                         :thumb  => "50x50",
@@ -32,6 +66,24 @@ class User < ActiveRecord::Base
 
   def name
     "#{family_name}#{first_name}"
+  end
+
+  def self.search(params = {})
+    keyword = params[:q]
+    search_definition = Elasticsearch::DSL::Search.search {
+      query{
+        if keyword.present?
+          multi_match{
+            query keyword
+            fields %w{ family_name first_name job.name school.name }
+          }
+        else
+          match_all
+        end
+      }
+    }
+
+    __elasticsearch__.search(search_definition)
   end
 
 end

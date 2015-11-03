@@ -16,7 +16,7 @@ class IdeasController < ApplicationController
   end
 
   def index
-    @ideas = Idea.all.order("created_at DESC").page(params[:page])
+    @ideas = Idea.search(params).page(params[:page])
   end
 
   def show

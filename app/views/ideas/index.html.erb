@@ -3,7 +3,17 @@
   </div>
 </section>
 <div class="container">
-  <h2 class="text-center">アイデアを探す</h2>
+  <div class="text-center">
+    <h2>アイデアを探す</h2>
+    <div style="max-width:500px;margin:0 auto">
+      <%= form_tag ideas_path, method: :get, enforce_utf8: false do %>
+        <div class="form-group">
+          <%= search_field_tag :q, params[:q], :class => "form-control", :placeholder => "スキル、学校名、名前" %>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:200px">検索</button>
+      <% end %>
+    </div>
+  </div>
   <hr>
   <section class="no-padding">
     <div class="container-fuild">
@@ -11,7 +21,26 @@
         <div id="ideas">
           <div class="page">
             <% @ideas.each do |i| %>
-              <%= render 'ideas/idea', i: i %>
+              <div class="idea">
+              <div class="col-lg-4 col-sm-4 text-center" style="height:300px">
+                <h4><%= link_to i.name, idea_path(i.id), :class => "btn btn-primary", :style => "position:relative;top:20px;width:200px" %></h4>
+                <div class="portfolio-box">
+                  <a href="/ideas/<%= i.id %>">
+                    <%= image_tag Idea.find(i.id).authenticated_image_url(:large), :class => "img-responsive", :alt => "", :style => "margin:0 auto" %>
+                    <div class="portfolio-box-caption">
+                      <div class="portfolio-box-caption-content">
+                        <div class="project-name">
+                          <%= i.name %>
+                        </div>
+                        <div class="project-category text-faded">
+                          <p><%= "#{Idea.find(i.id).user.name}さん(#{Idea.find(i.id).user.school.name})" %></p>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+                </div>
+              </div>
             <% end %>
           </div>
         </div>

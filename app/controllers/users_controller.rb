@@ -4,7 +4,8 @@ class UsersController < ApplicationController
   before_action :profile_check,  only:[:index, :show]
 
   def index
-    @users = User.all.order("created_at DESC").page(params[:page])
+    # @users = User.all.includes(:school, :job).order("created_at DESC").page(params[:page])
+    @users = User.search(params)
     @ideas = Idea.all.order("created_at DESC").page(params[:page])
   end
 

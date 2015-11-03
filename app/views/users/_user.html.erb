@@ -1,6 +1,6 @@
 <div class="user">
   <div class="col-lg-4 col-sm-4 text-center" style="height:300px">
-    <h4><%= link_to "#{u.name}(#{u.job.name})", user_path(u.id), :class => "btn btn-primary", :style => "position:relative;top:20px;width:200px" %></h4>
+    <h4><%= link_to "#{u.family_name} #{u.first_name}(#{u.job.name})", user_path(u.id), :class => "btn btn-primary", :style => "position:relative;top:20px;width:200px" %></h4>
     <div class="portfolio-box">
       <a href="/users/<%= u.id %>">
         <% if u.avatar.present? %>
