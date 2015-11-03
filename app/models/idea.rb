@@ -70,3 +70,4 @@ class Idea < ActiveRecord::Base
     __elasticsearch__.search(search_definition)
   end
 end
+Idea.import
