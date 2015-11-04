@@ -25,7 +25,6 @@
       <div class="row no-gutter">
         <div id="users">
           <div class="page">
-            <% binding.pry %>
             <% @users.each do |u| %>
               <% if User.find(u.id).full_profile? %>
                 <div class="user">
