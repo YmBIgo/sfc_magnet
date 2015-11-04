@@ -26,6 +26,8 @@
           </div>
 
           <div class="actions">
+            <%= f.hidden_field :job_id, :value => 1 %>
+            <%= f.hidden_field :school_id, :value => 1 %>
             <%= f.submit "登録する", :class => "btn btn-primary" %>
           </div>
         <% end %>

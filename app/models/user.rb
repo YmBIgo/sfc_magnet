@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   index_name "user_#{Rails.env}" # インデックス名を指定(RDBでいうデータベース)
 
   settings do
-    mappings do
+    mappings dynamic: 'false' do
 
       indexes :family_name,    analyzer: 'keyword', index: 'not_analyzed'
       indexes :first_name,     analyzer: 'keyword', index: 'not_analyzed'
@@ -38,9 +38,9 @@ class User < ActiveRecord::Base
   def as_indexed_json(options = {})
     attributes
       .symbolize_keys
-      .slice(:family_name, :first_name, :created_at, :skill )
-      .merge(job: { name: job.name })
-      .merge(school: { name: school.name })
+      .slice(:family_name, :first_name, :skill, :created_at)
+      .merge( job: { name: job.name })
+      .merge( school: { name: school.name })
   end
 
   has_attached_file :avatar,
@@ -87,4 +87,3 @@ class User < ActiveRecord::Base
   end
 
 end
-User.import
