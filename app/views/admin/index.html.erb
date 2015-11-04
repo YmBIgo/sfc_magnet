@@ -17,9 +17,12 @@
       <td>サクジョ</td>
     </thead>
     <% @users.each do |u| %>
-      <% if u.full_profile? %>
         <tr>
-          <td><%= image_tag u.authenticated_image_url(:thumb), :class => "img-responsive", :alt => "", :style => "margin:0 auto" %></td>
+          <% if u.full_profile? %>
+            <td><%= image_tag u.authenticated_image_url(:thumb), :class => "img-responsive", :alt => "", :style => "margin:0 auto" %></td>
+          <% else %>
+            <td>no avatar</td>
+          <% end %>
           <td><%= link_to "#{u.id}",user_path(u.id) %></td>
           <td><%= link_to "#{u.family_name}#{u.first_name}",user_path(u.id) %></td>
           <td><%= u.email %></td>
@@ -28,7 +31,6 @@
           <td><%= u.job.name %></td>
           <td><%= link_to "delete", user_path(u.id), method: :delete, :class => "btn btn-primary" %></td>
         </tr>
-      <% end %>
     <% end %>
     <%= paginate @users %>
   </table>
