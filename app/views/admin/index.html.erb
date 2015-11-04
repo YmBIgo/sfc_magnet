@@ -17,16 +17,18 @@
       <td>サクジョ</td>
     </thead>
     <% @users.each do |u| %>
-      <tr>
-        <td><%= image_tag u.authenticated_image_url(:thumb), :class => "img-responsive", :alt => "", :style => "margin:0 auto" %></td>
-        <td><%= link_to "#{u.id}",user_path(u.id) %></td>
-        <td><%= link_to "#{u.family_name}#{u.first_name}",user_path(u.id) %></td>
-        <td><%= u.email %></td>
-        <td><%= u.ideas.count %></td>
-        <td><%= u.school.name %></td>
-        <td><%= u.job.name %></td>
-        <td><%= link_to "delete", user_path(u.id), method: :delete, :class => "btn btn-primary" %></td>
-      </tr>
+      <% if u.full_profile? %>
+        <tr>
+          <td><%= image_tag u.authenticated_image_url(:thumb), :class => "img-responsive", :alt => "", :style => "margin:0 auto" %></td>
+          <td><%= link_to "#{u.id}",user_path(u.id) %></td>
+          <td><%= link_to "#{u.family_name}#{u.first_name}",user_path(u.id) %></td>
+          <td><%= u.email %></td>
+          <td><%= u.ideas.count %></td>
+          <td><%= u.school.name %></td>
+          <td><%= u.job.name %></td>
+          <td><%= link_to "delete", user_path(u.id), method: :delete, :class => "btn btn-primary" %></td>
+        </tr>
+      <% end %>
     <% end %>
     <%= paginate @users %>
   </table>

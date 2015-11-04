@@ -40,7 +40,9 @@
             </div>
             <% else %>
               <div class="form-notice">
-                <h2>登録を完了して下さい</h2>
+                <h2>
+                始める前に、登録を完了して下さい
+                </h2>
                 <%= link_to "登録画面へ", edit_user_path(current_user.id), :class => "btn btn-primary" %>
               </div>
             <% end %>

@@ -25,27 +25,30 @@
       <div class="row no-gutter">
         <div id="users">
           <div class="page">
+            <% binding.pry %>
             <% @users.each do |u| %>
-              <div class="user">
-                <div class="col-lg-4 col-sm-4 text-center" style="height:300px">
-                  <h4><%= link_to "#{u.family_name} #{u.first_name}(#{u.job.name})", user_path(u.id), :class => "btn btn-primary", :style => "position:relative;top:20px;width:200px" %></h4>
-                  <div class="portfolio-box">
-                    <a href="/users/<%= u.id %>">
-                      <%= image_tag User.find(u.id).authenticated_image_url(:large), :class => "img-responsive", :alt => "", :style => "margin:0 auto" %>
-                      <div class="portfolio-box-caption">
-                        <div class="portfolio-box-caption-content">
-                          <div class="project-name">
-                            <%= u.job.name %>
-                          </div>
-                          <div class="project-category text-faded">
-                            <p><%= "#{u.family_name}#{u.first_name}(#{u.school.name})" %>さん</p>
+              <% if User.find(u.id).full_profile? %>
+                <div class="user">
+                  <div class="col-lg-4 col-sm-4 text-center" style="height:300px">
+                    <h4><%= link_to "#{u.family_name} #{u.first_name}(#{u.job.name})", user_path(u.id), :class => "btn btn-primary", :style => "position:relative;top:20px;width:200px" %></h4>
+                    <div class="portfolio-box">
+                      <a href="/users/<%= u.id %>">
+                        <%= image_tag User.find(u.id).authenticated_image_url(:large), :class => "img-responsive", :alt => "", :style => "margin:0 auto" %>
+                        <div class="portfolio-box-caption">
+                          <div class="portfolio-box-caption-content">
+                            <div class="project-name">
+                              <%= u.job.name %>
+                            </div>
+                            <div class="project-category text-faded">
+                              <p><%= "#{u.family_name}#{u.first_name}(#{u.school.name})" %>さん</p>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </a>
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
+              <% end %>
             <% end %>
           </div>
         </div>
