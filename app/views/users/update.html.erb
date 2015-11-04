@@ -2,18 +2,29 @@
 <header>
   <div class="header-content">
     <div class="header-content-inner">
-      <div class="form-wrapper">
-        <div class="text-center">
-          <h2><strong>ユーザー情報を編集しました</strong></h2>
-          <p><%= "#{@user.name}" %></p>
-          <p><%= "#{@user.school.name}:#{@user.job.name}" %></p>
-          <% if @user.avatar.present? %>
-            <%= image_tag @user.authenticated_image_url(:large), :class => "img-responsive", :alt => "", :style => "margin:5px auto" %>
-          <% end %>
+      <% if @user.full_profile? %>
+        <div class="form-wrapper">
+          <div class="text-center">
+            <h2><strong>ユーザー情報を編集しました</strong></h2>
+            <p><%= "#{@user.name}" %></p>
+            <p><%= "#{@user.school.name}:#{@user.job.name}" %></p>
+            <% if @user.avatar.present? %>
+              <%= image_tag @user.authenticated_image_url(:large), :class => "img-responsive", :alt => "", :style => "margin:5px auto" %>
+            <% end %>
+          </div>
+          <%= link_to "ユーザー情報を見る", user_path(current_user.id), :class => "btn btn-primary" %>
+          <%= link_to "トップに戻る", root_path, :class => "btn btn-primary" %>
         </div>
-        <%= link_to "ユーザー情報を見る", user_path(current_user.id), :class => "btn btn-primary" %>
-        <%= link_to "トップに戻る", root_path, :class => "btn btn-primary" %>
-      </div>
+      <% else %>
+        <div class="form-notice">
+          <h2>
+          始める前に、
+          <br>
+          全ての情報登録を完了して下さい
+          </h2>
+          <%= link_to "登録画面へ", edit_user_path(current_user.id), :class => "btn btn-primary" %>
+        </div>
+      <% end %>
     </div>
   </div>
 </header>

@@ -61,7 +61,7 @@ class User < ActiveRecord::Base
   end
 
   def full_profile?
-    family_name? && first_name? && job_id? && school_id? && avatar? && skill?
+    family_name? && first_name? && job_id? && school_id? && avatar? && skill? && self_intro?
   end
 
   def name
