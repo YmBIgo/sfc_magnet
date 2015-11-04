@@ -1,4 +1,4 @@
-<% provide :title,"アイデアを更新しました" %>
+<% provide :title,"プロジェクトを更新しました" %>
 <header>
   <div class="header-content">
     <div class="header-content-inner">
@@ -11,7 +11,7 @@
             <%= image_tag @idea.authenticated_image_url(:large), :class => "img-responsive", :alt => "", :style => "margin:5px auto" %>
           <% end %>
         </div>
-        <%= link_to "このアイデアを見る", idea_path(@idea.id), :class => "btn btn-primary" %>
+        <%= link_to "このプロジェクトを見る", idea_path(@idea.id), :class => "btn btn-primary" %>
         <%= link_to "トップに戻る", root_path, :class => "btn btn-primary" %>
       </div>
     </div>

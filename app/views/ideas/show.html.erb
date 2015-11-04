@@ -13,7 +13,7 @@
   <p><%= simple_format(@idea.outline) %></p>
   <% if @idea.user.id == current_user.id %>
     <div class="text-center">
-      <%= link_to "このアイデアを編集する", edit_idea_path(@idea.id), :class => "btn btn-primary", :style => "margin:5px auto" %>
+      <%= link_to "このプロジェクトを編集する", edit_idea_path(@idea.id), :class => "btn btn-primary", :style => "margin:5px auto" %>
     </div>
   <% end %>
   <hr>

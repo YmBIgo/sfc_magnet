@@ -1,10 +1,10 @@
-<% provide :title, "アイデアを登録する" %>
+<% provide :title, "プロジェクトを登録する" %>
 <header>
   <div class="header-content">
     <div class="header-content-inner">
       <div class="form-wrapper">
         <% if current_user.ideas.count<3 %>
-          <h2>アイデアを登録する</h2>
+          <h2>プロジェクトを登録する</h2>
           <%= form_for(@idea) do |f| %>
             <div class="form-item">
               <%= f.label "タイトル" %>
@@ -29,11 +29,11 @@
             </div>
           <% end %>
         <% else %>
-          <h3 style="padding-top:50px">アイデア登録は３件までです
+          <h3 style="padding-top:50px">プロジェクト登録は３件までです
               <br>
-              新しく登録する場合は、<br>登録したアイデアを編集してください
+              新しく登録する場合は、<br>登録したプロジェクトを編集してください
           </h3>
-          <%= link_to "自分のアイデアを見る", user_path(current_user.id), :class => "btn btn-primary" %>
+          <%= link_to "自分のプロジェクトを見る", user_path(current_user.id), :class => "btn btn-primary" %>
           <br>
           <%= link_to "トップに戻る", root_path, :class => "btn btn-primary" %>
         <% end %>

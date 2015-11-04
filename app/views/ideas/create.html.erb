@@ -1,4 +1,4 @@
-<% provide :title, "アイデアが登録されました" %>
+<% provide :title, "プロジェクトが登録されました" %>
 <header>
   <div class="header-content">
     <div class="header-content-inner">
@@ -8,7 +8,7 @@
             <h2>登録しました！</h2>
               <%= image_tag @idea.authenticated_image_url(:large), :class => "img-responsive", :alt => "", :style => "margin:5px auto" %>
             <h3><%= "#{@idea.name}" %></h3>
-            <%= link_to "自分のアイデアを見る", user_path(current_user.id), :class => "btn btn-primary" %>
+            <%= link_to "自分のプロジェクトを見る", user_path(current_user.id), :class => "btn btn-primary" %>
         <% else %>
           <div class="form-notice">
             <h2 style="padding:25px 0; ">登録できませんでした</h2>
@@ -18,7 +18,7 @@
             <h2 style="padding:25px 0; ">登録できませんでした</h2>
       <% end %>
         <br>
-        <%= link_to "アイデアの登録に戻る", new_idea_path, :class => "btn btn-primary" %>
+        <%= link_to "プロジェクトの登録に戻る", new_idea_path, :class => "btn btn-primary" %>
         <%= link_to "トップに戻る", root_path, :class => "btn btn-primary" %>
       </div>
     </div>
