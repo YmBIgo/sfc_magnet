@@ -5,10 +5,8 @@
       <div class="form-wrapper">
         <h2>ユーザー情報</h2>
         <%= form_for @user do |f| %>
-          <% if @user.avatar.present? %>
-            <%= image_tag @user.authenticated_image_url(:medium), :class => "img-responsive", :alt => "", :style => "margin:5px auto" %>
-          <% end %>
           <div class="form-item">
+            <%= f.label "プロフィール画像" %>
             <%= f.file_field :avatar, :class => "form-control" %>
           </div>
           <div class="row">
@@ -48,7 +46,11 @@
             </div>
           </div>
           <div class="form-item">
-            <%= f.label "スキルと自己紹介" %>
+            <%= f.label "あなたのスキルと興味分野を教えてください" %>
+            <%= f.text_area :skill, :class => "form-control" %>
+          </div>
+          <div class="form-item">
+            <%= f.label "自己紹介" %>
             <%= f.text_area :self_intro, :class => "form-control" %>
           </div>
           <div class="actions">

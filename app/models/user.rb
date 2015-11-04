@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
 
       indexes :created_at,     type: 'date', format: 'date_time'
 
-      indexes :avatar,         type: 'string'
+      indexes :skill,          analyzer: 'kuromoji'
 
       indexes :job do
         indexes :name, analyzer: 'keyword', index: 'not_analyzed'
@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
   def as_indexed_json(options = {})
     attributes
       .symbolize_keys
-      .slice(:family_name, :first_name, :created_at )
+      .slice(:family_name, :first_name, :created_at, :skill )
       .merge(job: { name: job.name })
       .merge(school: { name: school.name })
   end
@@ -61,7 +61,7 @@ class User < ActiveRecord::Base
   end
 
   def full_profile?
-    family_name? && first_name? && job_id? && school_id? && avatar?
+    family_name? && first_name? && job_id? && school_id? && avatar? && skill?
   end
 
   def name
@@ -75,7 +75,7 @@ class User < ActiveRecord::Base
         if keyword.present?
           multi_match{
             query keyword
-            fields %w{ family_name first_name job.name school.name }
+            fields %w{ family_name first_name skill job.name school.name }
           }
         else
           match_all

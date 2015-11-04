@@ -13,8 +13,13 @@
     <%= image_tag @user.authenticated_image_url(:large), :class => "img-responsive", :alt => "", :style => "margin:0 auto" %>
   <% end %>
   <hr>
-  <p><%= simple_format(@user.self_intro) %></p>
   <div class="text-center">
+    <h3>自己紹介</h3>
+    <p><%= simple_format(@user.self_intro) %></p>
+    <hr>
+    <h3>スキル</h3>
+    <p><%= simple_format(@user.skill) %></p>
+    <hr>
     <p>メールアドレス(<%= "#{@user.email}" %>)</p>
     <% if @user.id == current_user.id %>
       <%= link_to "ユーザー情報を編集する", edit_user_path(current_user.id), :class => "btn btn-primary" %>
