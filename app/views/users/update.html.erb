@@ -7,7 +7,7 @@
           <div class="text-center">
             <h2><strong>ユーザー情報を編集しました</strong></h2>
             <p><%= "#{@user.name}" %></p>
-            <p><%= "#{@user.school.name}:#{@user.job.name}" %></p>
+            <p><%= "#{@user.party}:#{@user.job.name}" %></p>
             <% if @user.avatar.present? %>
               <%= image_tag @user.authenticated_image_url(:large), :class => "img-responsive", :alt => "", :style => "margin:5px auto" %>
             <% end %>
@@ -18,7 +18,7 @@
       <% else %>
         <div class="form-notice">
           <h2>
-          始める前に、
+          登録が完了していません。
           <br>
           全ての情報登録を完了して下さい
           </h2>

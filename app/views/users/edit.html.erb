@@ -29,7 +29,7 @@
           </div>
           <div class="row">
             <div class="col-sm-6 col-xs-6">
-              <%= f.label "学校名" %>
+              <%= f.label "所属" %>
             </div>
             <div class="col-sm-6 col-xs-6">
               <%= f.label "役割" %>
@@ -38,7 +38,7 @@
           <div class="form-small-item">
             <div class="row">
               <div class="col-sm-6 col-xs-6">
-                <%= f.collection_select :school_id, School.all , :id, :name, {:class => "form-control"} %>
+                <%= f.text_field :party, :class => "form-control" %>
               </div>
               <div class="col-sm-6 col-xs-6">
                 <%= f.collection_select :job_id, Job.all, :id, :name , {:class => "form-control"} %>

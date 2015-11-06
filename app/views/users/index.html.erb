@@ -5,11 +5,11 @@
   <hr>
   <h2>ユーザーを探す</h2>
   <br>
-  <p>持っているスキル、役割、学校名、名前でユーザーを検索することができます。</p>
+  <p>持っているスキル、役割、所属、名前でユーザーを検索することができます。</p>
   <div style="max-width:500px;margin:0 auto">
     <%= form_tag users_path, method: :get, enforce_utf8: false do %>
       <div class="form-group">
-        <%= search_field_tag :q, params[:q], :class => "form-control", :placeholder => "欲しいスキル、役割、学校名、名前" %>
+        <%= search_field_tag :q, params[:q], :class => "form-control", :placeholder => "欲しいスキル、役割、所属、名前" %>
       </div>
       <button type="submit" class="btn btn-primary" style="width:200px">検索</button>
     <% end %>
@@ -34,7 +34,7 @@
                         <div class="portfolio-box-caption">
                           <div class="portfolio-box-caption-content">
                             <div class="project-name">
-                              <h4><%= "#{u.family_name}#{u.first_name}(#{u.school.name})" %>さん</h4>
+                              <h4><%= "#{u.family_name}#{u.first_name}(#{u.party})" %>さん</h4>
                             </div>
                           </div>
                         </div>

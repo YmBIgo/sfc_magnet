@@ -5,7 +5,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # association
-  belongs_to :school
   belongs_to :job
   has_many   :ideas
 
@@ -25,22 +24,20 @@ class User < ActiveRecord::Base
 
       indexes :skill,          analyzer: 'kuromoji'
 
+      indexes :party,          analyzer: 'kuromoji'
+
       indexes :job do
         indexes :name, analyzer: 'keyword', index: 'not_analyzed'
       end
 
-      indexes :school do
-        indexes :name, analyzer: 'keyword', index: 'not_analyzed'
-      end
     end
   end
 
   def as_indexed_json(options = {})
     attributes
       .symbolize_keys
-      .slice(:family_name, :first_name, :skill, :created_at)
+      .slice(:family_name, :first_name, :skill, :party, :created_at)
       .merge( job: { name: job.name })
-      .merge( school: { name: school.name })
   end
 
   has_attached_file :avatar,
@@ -61,7 +58,7 @@ class User < ActiveRecord::Base
   end
 
   def full_profile?
-    family_name? && first_name? && job_id? && school_id? && avatar? && skill? && self_intro?
+    family_name? && first_name? && job_id? && party? && avatar? && skill? && self_intro?
   end
 
   def name
@@ -75,7 +72,7 @@ class User < ActiveRecord::Base
         if keyword.present?
           multi_match{
             query keyword
-            fields %w{ family_name first_name skill job.name school.name }
+            fields %w{ family_name first_name skill party job.name }
           }
         else
           match_all
