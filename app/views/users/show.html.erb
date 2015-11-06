@@ -1,8 +1,6 @@
 <% provide :title, "#{@user.name}" %>
-<section class="sub_header">
-  <div class="sub_header_content">
-  </div>
-</section>
+<aside class="bg-dark">
+</aside>
 <div class="container">
   <div class="text-center">
     <h2><strong><%= "#{@user.family_name} #{@user.first_name}さん" %></strong></h2>
@@ -22,7 +20,9 @@
     <hr>
     <p>メールアドレス(<%= "#{@user.email}" %>)</p>
     <% if @user.id == current_user.id %>
-      <%= link_to "ユーザー情報を編集する", edit_user_path(current_user.id), :class => "btn btn-primary" %>
+      <p>
+      <%= link_to "ユーザーを編集する", edit_user_path(current_user.id), :class => "btn btn-primary" %>　<%= link_to "登録情報を編集する", edit_user_registration_path, :class => "btn btn-primary", :style => "margin:5px" %>
+      </p>
     <% end %>
     <hr>
     <h2>プロジェクト一覧</h2>

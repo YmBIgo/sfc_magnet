@@ -1,8 +1,6 @@
 <% provide :title, "プロジェクトを探す" %>
-<section class="sub_header">
-  <div class="sub_header_content">
-  </div>
-</section>
+<aside class="bg-dark">
+</aside>
 <div class="container">
   <div class="text-center">
     <hr>
@@ -26,8 +24,8 @@
           <div class="page">
             <% @ideas.each do |i| %>
               <div class="idea">
-              <div class="col-lg-4 col-sm-4 text-center" style="height:300px">
-                <h4><%= link_to i.name, idea_path(i.id), :class => "btn btn-primary", :style => "position:relative;top:20px;width:200px" %></h4>
+              <div class="col-lg-4 col-sm-6 text-center" style="height:300px">
+                <h4><%= link_to i.name, idea_path(i.id), :class => "btn btn-primary", :style => "width:200px" %></h4>
                 <div class="portfolio-box">
                   <a href="/ideas/<%= i.id %>">
                     <%= image_tag Idea.find(i.id).authenticated_image_url(:large), :class => "img-responsive", :alt => "", :style => "margin:0 auto" %>

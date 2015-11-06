@@ -13,15 +13,15 @@
           </div>
 
           <div class="form-item">
-            <%= f.label :password %>
+            <%= f.label "パスワード" %>
             <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <em>(<%= @minimum_password_length %>文字以上)</em>
             <% end %><br />
             <%= f.password_field :password, autocomplete: "off", :class => "form-control" %>
           </div>
 
           <div class="form-item">
-            <%= f.label :password_confirmation %><br />
+            <%= f.label "パスワード(確認)" %><br />
             <%= f.password_field :password_confirmation, autocomplete: "off", :class => "form-control" %>
           </div>
 
