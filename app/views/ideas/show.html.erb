@@ -1,19 +1,35 @@
 <% provide :title, "#{@idea.name}" %>
 <aside class="bg-dark">
 </aside>
-<div class="container">
+<div class="container bg-main">
   <div class="text-center">
     <h2><%= @idea.name %></h2>
+    <p><%= @idea.reputation_for(:participate).to_i %>人参加</p>
+    <% if @idea.has_evaluation?(:participate, current_user) %>
+      <p class="btn btn-primary">ok</p>
+    <% end %>
     <%= link_to "#{@idea.user.name}(#{@idea.user.job.name})", user_path(@idea.user.id), :class => "btn btn-primary", :style => "width:200px" %>
+    <hr>
     <%= image_tag @idea.authenticated_image_url(:large), :class => "img-responsive", :alt => "", :style => "margin:5px auto" %>
-  <hr>
-  <p><%= simple_format(@idea.outline) %></p>
-  <hr>
-  <p>メールアドレス：<%= @idea.user.email %></p>
-  <% if @idea.user.id == current_user.id %>
-    <div class="text-center">
-      <%= link_to "このプロジェクトを編集する", edit_idea_path(@idea.id), :class => "btn btn-primary", :style => "margin:5px auto" %>
-    </div>
-  <% end %>
+    <h2>内容</h2>
+    <hr>
+    <p><%= simple_format(@idea.outline) %></p>
+    <p>メールアドレス：<%= @idea.user.email %></p>
+    <% if @idea.user.id == current_user.id %>
+      <div class="text-center">
+        <%= link_to "このプロジェクトを編集する", edit_idea_path(@idea.id), :class => "btn btn-primary", :style => "margin:5px auto" %>
+      </div>
+    <% end %>
+    <hr>
+    <h3>参加者</h3>
+    <table class="table">
+    <% @users.each do |u| %>
+      <tr>
+        <td>
+        <%= link_to User.find(u).name, user_path(u.source_id), :class => "btn btn-primary" %>
+        </td>
+      </tr>
+    <% end %>
+    </table>
   </div>
 </div>

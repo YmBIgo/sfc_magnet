@@ -52,6 +52,9 @@ gem 'compass-rails', github: "Compass/compass-rails", branch: "master"
 gem 'chosen-rails'
 gem 'sprockets-rails'
 
+# gem for like-system
+gem 'activerecord-reputation-system', github: 'NARKOZ/activerecord-reputation-system', branch: 'rails4'
+
 # gems for s3
 # gem 'dragonfly'
 # gem 'dragonfly-s3_data_store'

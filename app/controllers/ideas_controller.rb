@@ -10,6 +10,7 @@ class IdeasController < ApplicationController
   def create
     if current_user.ideas.count < 3
       @idea = Idea.create(create_params)
+      @idea.add_evaluation(:participate, 1, current_user)
     else
       flash[:fail] = "Too much Ideas"
     end
@@ -21,6 +22,8 @@ class IdeasController < ApplicationController
 
   def show
     @idea = Idea.find(params[:id])
+    @users = @idea.evaluations.where(:reputation_name => "participate")
+    @like = @idea.evaluations.where(:reputation_name => "likes")
   end
 
   def edit

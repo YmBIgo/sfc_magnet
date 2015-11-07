@@ -3,7 +3,7 @@
         <div class="header-content-inner">
           <% if user_signed_in? %>
             <% if current_user.full_profile? %>
-              <h1>SFC Magnet</h1>
+              <h1>Magjet</h1>
             <div class="row">
               <div class="col-lg-6 col-md-6 col-sm-6 text-center">
                   <div class="service-box">
@@ -49,7 +49,7 @@
               </div>
             <% end %>
           <% else %>
-            <h1>Welcome to SFC Magnet</h1>
+            <h1>Welcome to Magjet</h1>
             <hr>
             <p>
               <%= link_to "新規登録する", new_user_registration_path, :class => "btn btn-primary btn-xl" %>　

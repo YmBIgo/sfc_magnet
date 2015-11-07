@@ -1,54 +1,55 @@
 <% provide :title, "ユーザーを探す" %>
 <aside class="bg-dark">
 </aside>
-<div class="text-center">
-  <hr>
-  <h2>ユーザーを探す</h2>
-  <br>
-  <p>持っているスキル、役割、所属、名前でユーザーを検索することができます。</p>
-  <div style="max-width:500px;margin:0 auto">
-    <%= form_tag users_path, method: :get, enforce_utf8: false do %>
-      <div class="form-group">
-        <%= search_field_tag :q, params[:q], :class => "form-control", :placeholder => "欲しいスキル、役割、所属、名前" %>
-      </div>
-      <button type="submit" class="btn btn-primary" style="width:200px">検索</button>
-    <% end %>
+<div class="container bg-main">
+  <div class="text-center">
+    <h2>ユーザーを探す</h2>
+    <hr>
+    <p>持っているスキル、役割、所属、名前でユーザーを検索することができます。</p>
+    <div style="max-width:500px;margin:0 auto">
+      <%= form_tag users_path, method: :get, enforce_utf8: false do %>
+        <div class="form-group">
+          <%= search_field_tag :q, params[:q], :class => "form-control", :placeholder => "欲しいスキル、役割、所属、名前" %>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:200px">検索</button>
+      <% end %>
+    </div>
   </div>
-</div>
-<br>
-<hr>
-<div class="container">
-  <section class="no-padding">
-    <div class="container-fuild">
-      <div class="row no-gutter">
-        <div id="users">
-          <div class="page">
-            <% @users.each do |u| %>
-              <% if User.find(u.id).full_profile? %>
-                <div class="user">
-                  <div class="col-lg-4 col-sm-6 text-center" style="height:300px">
-                    <h4><%= link_to "#{u.family_name} #{u.first_name}", user_path(u.id), :class => "btn btn-primary", :style => "width:200px" %></h4>
-                    <div class="portfolio-box">
-                      <a href="/users/<%= u.id %>">
-                        <%= image_tag User.find(u.id).authenticated_image_url(:large), :class => "img-responsive", :alt => "", :style => "margin:0 auto" %>
-                        <div class="portfolio-box-caption">
-                          <div class="portfolio-box-caption-content">
-                            <div class="project-name">
-                              <h4><%= "#{u.family_name}#{u.first_name}(#{u.party})" %>さん</h4>
+  <br>
+  <hr>
+  <div class="container">
+    <section class="no-padding">
+      <div class="container-fuild">
+        <div class="row no-gutter">
+          <div id="users">
+            <div class="page">
+              <% @users.each do |u| %>
+                <% if User.find(u.id).full_profile? %>
+                  <div class="user">
+                    <div class="col-lg-4 col-sm-6 text-center" style="height:300px">
+                      <h4><%= link_to "#{u.family_name} #{u.first_name}", user_path(u.id), :class => "btn btn-primary", :style => "width:200px" %></h4>
+                      <div class="portfolio-box">
+                        <a href="/users/<%= u.id %>">
+                          <%= image_tag User.find(u.id).authenticated_image_url(:large), :class => "img-responsive", :alt => "", :style => "margin:0 auto" %>
+                          <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                              <div class="project-name">
+                                <h4><%= "#{u.family_name}#{u.first_name}(#{u.party})" %>さん</h4>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </a>
+                        </a>
+                      </div>
                     </div>
                   </div>
-                </div>
+                <% end %>
               <% end %>
-            <% end %>
+            </div>
           </div>
         </div>
+        <hr>
+        <%= paginate @users %>
       </div>
-      <%= paginate @users %>
-      <hr>
-    </div>
-  </section>
+    </section>
+  </div>
 </div>

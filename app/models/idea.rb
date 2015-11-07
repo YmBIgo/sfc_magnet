@@ -3,7 +3,13 @@ class Idea < ActiveRecord::Base
   belongs_to :user
   belongs_to :type
 
-    # Elasticserach
+  # reputation_system
+  # いいね数
+  has_reputation :likes,        source: :user, aggregated_by: :sum
+  # 参加数
+  has_reputation :participate,  source: :user, aggregated_by: :sum
+
+  # Elasticserach
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
@@ -69,5 +75,6 @@ class Idea < ActiveRecord::Base
 
     __elasticsearch__.search(search_definition)
   end
+
 end
 
